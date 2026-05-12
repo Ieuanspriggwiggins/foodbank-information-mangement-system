@@ -1,0 +1,33 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/contact-tickets">&lt; Back</a>
+        </div>
+
+        <article>
+            <h2>Contact Details</h2>
+            <p>Name: <?=data.contactTicket.name?></p>
+            <p>Organisation: <?=data.contactTicket.organisation?></p>
+            <p>Contact Email: <a href="mailto:<?=data.contactTicket.contact_email?>"><?=data.contactTicket.contact_email?></a></p>
+            <p>Contact Phone: <?=data.contactTicket.contact_number?></p>
+        </article>
+        <article>
+            <h2>Ticket Information</h2>
+            <p>Date Received: <?=data.contactTicket.date_received?></p>
+            <p>Ticket Type: <?=data.contactTicket.ticket_type?></p>
+        </article>
+        <article>
+            <h2>Message</h2>
+            <p><?-data.contactTicket.message?></p>
+        </article>
+    </div>
+</main>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

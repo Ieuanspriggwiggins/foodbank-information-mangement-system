@@ -1,0 +1,54 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/orders">&lt; Back</a>
+        </div>
+
+        <div class="flex-hor-cen">
+            <form class="dashboard-form" method="POST" action="/admin/api/orders">
+                <? if(data.validation_error) { ?>
+                    <span class="error">Please select a user and a food package</span>
+                <? } ?>
+                <h2>Create Food Package Order</h2>
+
+                <h3>Select a Food Package</h3>
+                <div class="data-selection-input" data-type="food_package">
+                    <div class="data-selection-search-container">
+                        <input name="food-package-selected" class="" type="hidden">
+                        <input placeholder="Search Food Package" type="search" class="data-selection-search-input"/>
+                        <input type="button" class="data-selection-search-button" value="Search" />
+                    </div>
+                    <div class="results-container"></div>
+                </div>
+
+                <h3>Select a User</h3>
+                <div class="data-selection-input" data-type="users">
+                    <div class="data-selection-search-container">
+                        <input name="user-selected" class="" type="hidden">
+                        <input placeholder="Search User" type="search" class="data-selection-search-input"/>
+                        <input type="button" class="data-selection-search-button" value="Search" />
+                    </div>
+                    <div class="results-container"></div>
+                </div>
+
+                <label>Order Type</label>
+                <select name="order-type" id="order-type">
+                    <option value="type-collection">Collection</option>
+                    <option value="type-delivery">Delivery</option>
+                </select>
+
+                <input type="submit" style="margin-bottom: 100px;"/>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="/admin/js/DataInputSelector.js" defer></script>
+
+<?- include('../../components/foot') ?>

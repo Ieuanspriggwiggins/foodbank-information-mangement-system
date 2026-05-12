@@ -1,0 +1,51 @@
+<?-include('../components/head', {page_title: 'Register'})?>
+
+<main class="full-width">
+    <div class="content-section">
+        <form class="login-form" action="/register" method="POST">
+            <h2>Sign Up</h2>
+
+            <? if(locals.passwordMismatch) { ?>
+                <p class="form-validation-error">The passwords you entered do not match</p>
+            <? } ?>
+
+            <? if(locals.accountExists) { ?>
+                <p class="form-validation-error">An account with that email already exists</p>
+            <? } ?>
+
+            <? if(locals.locationRestricted) { ?>
+                <p class="form-validation-error">Unfortunately, the food bank does not serve your location at this time</p>
+            <? } ?>
+
+            <div class="form-body">
+                <label for="first-name-input">First Name*</label>
+                <input type="text" id="first-name-input" name="first-name-input" required placeholder="David"/>
+
+                <label for="last-name-input">Last Name*</label>
+                <input type="text" id="last-name-input" name="last-name-input" required placeholder="Stedman"/>
+
+                <label for="email-input">Email*</label>
+                <input type="email" id="email-input" name="email-input" required placeholder="email@example.com"/>
+
+                <label for="phone-number-input">Phone Number*</label>
+                <input type="text" id="phone-number-input" name="phone-number-input" required placeholder="Phone Number" />
+
+                <label for="postcode-input">Postcode*</label>
+                <input type="text" id="postcode-input" name="postcode-input" required placeholder="SY232AZ" />
+
+                <label for="address-input">Address</label>
+                <textarea id="address-input" name="address-input" placeholder="Your Address"></textarea>
+
+                <label for="password-input">Password*</label>
+                <input type="password" id="password-input" placeholder="Your Secure Password" name="password-input" required title="Password must have a capital letter, a non-alphanumeric character and be at least 8 characters" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+
+                <label for="password-confirm-input">Confirm Password*</label>
+                <input type="password" id="password-confirm-input" placeholder="Confirm Your Password" name="password-confirm-input" required title="Password must have a capital letter, a non-alphanumeric character and be at least 8 characters" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+
+                <input type="submit" class="orange-button">
+            </div>
+        </form>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'Register'})?>

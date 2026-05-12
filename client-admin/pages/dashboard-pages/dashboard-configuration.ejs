@@ -1,0 +1,50 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <h2>Required Items</h2>
+        <p>Use this section to add items that the food bank is currently in need of. You can also remove items by clicking<br>
+        the 'remove' button next to them</p>
+
+        <form class="dashboard-form" method="POST" action="/admin/api/required_item">
+            <label for="new_item_input">New Food Item</label>
+            <input type="text" name="new_item_input" id="new_item_input" placeholder="Canned Vegetables">
+            <input style="margin-left: 0;" type="submit" value="Add">
+        </form>
+
+        <h2>Current Items</h2>
+        <? for(let i = 0; i < data.requiredItems.length; i++){ ?>
+            <p><a class="admin-remove-btn" href="/admin/api/required_item/delete/<?=data.requiredItems[i].id?>">Remove</a><?=data.requiredItems[i].itemString?></p>
+        <? } ?>
+
+        <? if(data.isAdmin) { ?>
+            <hr />
+            <h2>Geographical Limitation</h2>
+            <p>Add a location to the list of locations the food bank serves</p>
+            <form class="dashboard-form">
+                <label for="location-input">Add a Location</label>
+                <input type="text" name="location-input" id="location-input" placeholder="Town">
+                <div class="drop-down-input-container">
+                    <input style="margin-left: 0;" type="submit" value="Add" id="location-input-button" />
+                    <div id="drop-down-container">
+                        <div class="location-item">
+                            <p class="location-item-title">Aberystwyth</p>
+                            <p class="location-item-county">Ceredigion</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <script defer src="/admin/js/LocationPicker.js"></script>
+
+            <? for(let i = 0; i < data.restrictedLocations.length; i++) { ?>
+                <p><a class="admin-remove-btn" href="/admin/api/location/remove/<?=data.restrictedLocations[i].id?>">Remove</a><?=data.restrictedLocations[i].place_name?>, <?=data.restrictedLocations[i].county_name?></p>
+            <? } ?>
+        <? } ?>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

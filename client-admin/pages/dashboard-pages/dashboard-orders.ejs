@@ -1,0 +1,39 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="main-btn" href="/admin/dashboard/orders/create">Create New</a>
+            <div id="search-filter">
+                <button class="search-filter-clear-btn" id="search-filter-clear-btn"><span class="search-filter-text">Test</span><span class="search-filter-clear-cross">X</span></button>
+                <label for="filter-search-input">Search: </label>
+                <input id="filter-search-input" type="search" />
+                <input type="button" id="filter-search-btn" class="main-btn" value="Search" />
+            </div>
+        </div>
+        <?-include('../../components/pagination')?>
+        <div class="data-table-container">
+            <table id="data-table" data-field="orders">
+                <thead>
+                <tr>
+                    <th data-dataname="id" data-sortname="order.id" class="selected-desc" data-selected="1">Order ID</th>
+                    <th data-dataname="user_name" data-sortname="user.first_name">User Name</th>
+                    <th data-dataname="food_package_name" data-sortname="food_package.name">Food Package</th>
+                    <th data-dataname="date_created" data-sortname="order.date_created">Date Ordered</th>
+                    <th data-dataname="order_type" data-sortname="order.order_type">Order Type</th>
+                    <th data-dataname="order_status" data-sortname="order.order_status">Order Status</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="table-loading-modal">
+            <span class="material-icons">replay</span>
+        </div>
+        <script src="/admin/js/AdminData.js"></script>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

@@ -1,0 +1,60 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/accounts">< Back</a>
+            <? if(locals.user.is_deletable) { ?>
+                <form onsubmit="return openModal('Are you sure you want to delete this account?', () => this.submit())" action="/admin/api/admin-account?_method=delete" method="POST">
+                    <input type="hidden" name="id" value="<?=locals.user.id?>" />
+                    <input type="submit" class="delete-btn" value="Delete" />
+                </form>
+            <? } ?>
+        </div>
+
+        <div class="flex-hor-cen">
+            <form class="dashboard-form" onsubmit="return checkConfirmFormSubmit('Are you sure you want to update the user information?')" method="POST" action="/admin/api/admin-account?_method=PUT">
+                <h2>Update Staff Account Information</h2>
+
+                <input name="account-id" type="hidden" value="<?=locals.user.id?>">
+
+                <label for="input-email">Email</label>
+                <input type="email" name="input-email" id="input-email" placeholder="<?=locals.user.email?> (Unchanged)">
+
+                <label for="input-name">Full Name</label>
+                <input type="text" name="input-name" id="input-name" placeholder="<?=locals.user.name?> (Unchanged)">
+
+                <label for="input-password">New Password</label>
+                <!-- TODO: Add pattern to password field validation -->
+                <input type="password" name="input-password" id="input-password" placeholder="Unchanged"
+                minlength="8" > 
+
+                <label for="input-passwordConfirm">Confirm New Password</label>
+                <input type="password" name="input-passwordConfirm" id="input-passwordConfirm" placeholder="Unchanged"  minlength="8">
+
+                <label for="input-role">User Role</label>
+
+                <select id="input-role" name="input-role" <? if(!locals.user.is_deletable) {?>disabled<?}?>>
+                    <option value="administrator" <? if(locals.user.user_role[0].toString() === 'administrator') {?>selected<?}?>>Administrator</option>
+                    <option value="editor" <? if(locals.user.user_role[0].toString() === 'editor') {?>selected<?}?> >Editor</option>
+                </select>
+
+                <? if(locals.success) { ?>
+                    <p class="success-result">Account updated successfully</p>
+                <? } ?>
+                <? if(locals.password_fail) { ?>
+                    <p class="error">The password you entered is invalid. Please try again</p>
+                <? } ?>
+
+                <input type="submit" />
+            </form>
+        </div>
+    </div>
+</main>
+<?-include('../../components/confirmation-modal') ?>
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

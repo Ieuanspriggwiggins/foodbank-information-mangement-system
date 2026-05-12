@@ -1,0 +1,23 @@
+<header>
+    <div class="header-container">
+        <div class="header-title-container">
+            <span class="material-icons" id="mobile-navigation-button">menu</span>
+            <div class="flex-row-cen">
+                <a href="/">
+                    <img src="/foodbank-logo.svg" alt="food bank logo"/>
+                </a>
+                <h1>Your Food Bank</h1>
+            </div>
+        </div>
+        <div class="login-container mobile-hide">
+            <? if(locals.logged_in === false) { ?>
+                <a href="/login" class="login-btn">Login</a>
+            <? } else { ?>
+                <a href="/logout" class="login-btn">Sign Out</a>
+            <? } ?>
+        </div>
+    </div>
+    <div class="navigation-container mobile-hide">
+        <?-include('navigation')?>
+    </div>
+</header>

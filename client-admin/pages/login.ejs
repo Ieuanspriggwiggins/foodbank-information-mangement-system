@@ -1,0 +1,42 @@
+<?- include('../components/head', {title: 'Sign In'}) ?>
+
+<?- include('../components/header', {header_title: 'Management Dashboard \- Sign In'}) ?>
+
+<h2 class="text-center">Sign In</h2>
+<main>
+    <div class="flex-hor-cen">
+        <div class="login-container">
+            <form id="login-form-main" method="POST" action="api/login">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"/>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" />
+
+                <input type="submit" id="submit-btn" value="Submit" />
+
+                <? if(locals.show_success) { ?>
+                    <p style="color:green">Account created successfully</p>
+                <? } ?>
+
+                <? if(locals.logout_success) { ?>
+                    <p style="color: green">Logged out successfully</p>
+                <? } ?>
+
+                <? if(locals.show_setup_access_error){ ?> 
+                    <p class="error">The page you attempted to access does not exist</p>
+                <? } ?>
+
+                <?if(locals.password_fail){ ?>
+                    <p class="error">The password you entered is incorrect</p>
+                <? } ?>
+
+                <? if(locals.email_fail) { ?>
+                    <p class="error">There is no account associated with that email</p>
+                <? } ?>
+            </form>
+        </div>
+    </div>
+</main>
+<?-include('../components/foot') ?>

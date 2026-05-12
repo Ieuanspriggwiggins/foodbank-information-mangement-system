@@ -1,0 +1,34 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/contact-tickets">&lt; Back</a>
+        </div>
+        <article>
+            <h2>Donation Information</h2>
+            <h3>Donated Amount: <?=locals.donationObject.amount_total?></h3>
+            <p>Donor Name: <?=locals.donationObject.donation_name?></p>
+            <p>Donor Email: <?=locals.donationObject.donation_email?></p>
+
+            <h3>Address</h3>
+            <p>City: <?=locals.donationObject.donation_address_city?></p>
+            <p>Address Line One: <?=locals.donationObject.donation_address_line_1?></p>
+            <? if(locals.donationObject.donation_address_line_2) {?>
+                <p>Address Line Two: <?=locals.donationObject.donation_address_line_2?></p>
+            <? } ?>
+            <? if(locals.donationObject.donation_address_state) { ?>
+                <p>State: <?=locals.donationObject.donation_address_state?></p>
+            <? } ?>
+            <p>Address Postal Code: <?=locals.donationObject.donation_address_postcode?></p>
+            <p>Donation Date: <?=locals.donationObject.donation_date?></p>
+        </article>
+    </div>
+</main>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

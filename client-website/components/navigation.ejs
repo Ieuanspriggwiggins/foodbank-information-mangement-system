@@ -1,0 +1,19 @@
+<nav>
+    <a class="navigation-item <?if(locals.page.toString() === 'home'){?>navigation-selected<?}?>" href="/">Home</a>
+    <a class="navigation-item <?if(locals.page.toString() === 'about-us'){?>navigation-selected<?}?>" href="/about/">About</a>
+    <a class="navigation-item <?if(locals.page.toString() === 'food-package'){?>navigation-selected<?}?>" href="/food-packages/page/1">Food Packages</a>
+    <a class="navigation-item <?if(locals.page.toString() === 'contact-us'){?>navigation-selected<?}?>" href="/contact-us">Contact</a>
+    <a class="navigation-item <?if(locals.page.toString() === 'help-us'){?>navigation-selected<?}?>" href="/help-us">Help Us</a>
+    <? if(!locals.logged_in) {?>
+        <a class="navigation-item" href="/login">Login</a>
+    <?}?>
+    <?if(locals.logged_in){?>
+        <a class="navigation-item <?if(locals.page.toString() === 'my-account'){?>navigation-selected<?}?>" href="/my-account">My Account</a>
+        <? if(locals.show_signout) { ?>
+            <a class="navigation-item" href="/logout">Sign Out</a>
+        <? } ?>
+    <?}?>
+    <?if(locals.display_staff_link) {?>
+        <a class="navigation-item" href="/admin">Staff Login</a>
+    <? } ?>
+</nav>

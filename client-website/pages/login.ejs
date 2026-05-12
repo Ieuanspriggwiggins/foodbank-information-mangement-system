@@ -1,0 +1,36 @@
+<?-include('../components/head', {page_title: 'Login'})?>
+
+<main class="full-width">
+    <div class="content-section">
+        <form class="login-form" action="/login" method="POST">
+            <h2>Sign In</h2>
+
+            <? if(locals.registrationSuccess) { ?>
+                <p class="success-result">Account created successfully</p>
+            <? } ?>
+
+            <? if(locals.account_updated) { ?>
+                <p class="success-result">Your account has been updated</p>
+            <? } ?>
+
+            <div class="form-body">
+                <label for="input-email">Email</label>
+                <input type="email" id="input-email" name="input-email" required placeholder="email@example.com"/>
+
+                <label for="input-password">Password</label>
+                <input type="password" id="input-password" name="input-password" required placeholder="Your Secure Password">
+
+                <div class="table-input-pair">
+                    <input type="checkbox" id="remember-me-input" name="remember-me-input"/>
+                    <label for="remember-me-input" class="inline-label">Remember Me</label>
+                </div>
+
+                <input type="submit" class="orange-button" value="Login">
+            </div>
+        </form>
+
+        <p style="text-align: center;">If you don't have an account.<br>Create one <a href="/register">here</a></p>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'Login'})?>

@@ -1,0 +1,85 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/orders">&lt; Back</a>
+        </div>
+
+        <div class="grid-two-half-container">
+            <div class="grid-two-half-left">
+                <h2>Order Information</h2>
+                <h3 class="grey-mid">Order Status</h3>
+                <? if(data.updated_successfully) {?>
+                    <p class="success-result">Order Status Updated Successfully</p>
+                <? } ?>
+                <form class="dashboard-form" method="POST" action="/admin/api/orders?_method=put">
+                    <input type="hidden" name="order-id" value="<?=data.order.id?>">
+                    <select name="order-status">
+                        <option <?if(data.order.order_status.toString() === 'In Progress') {?> selected <?}?> value="in_progress">In Progress</option>
+                        <option <?if(data.order.order_status.toString() === 'Awaiting Approval') {?> selected <?}?> value="awaiting_approval">Awaiting Approval</option>
+                        <option <?if(data.order.order_status.toString() === 'Ready For Collection') {?> selected <?}?> value="ready_for_collection">Ready For Collection</option>
+                        <option <?if(data.order.order_status.toString() === 'Being Delivered') {?> selected <?}?> value="delivery">Being Delivered</option>
+                        <option <?if(data.order.order_status.toString() === 'Completed') {?> selected <?}?> value="completed">Completed</option>
+                        <option <?if(data.order.order_status.toString() === 'Cancelled') {?> selected <?}?> value="cancelled">Cancelled</option>
+                    </select>
+                    <input type="submit" value="Submit"/>
+                </form>
+                <h3>Order Type</h3>
+                <p><?=data.order.order_type?></p>
+
+                <h3>Date Created</h3>
+                <p><?=data.order.date_created?></p>
+
+                <h3>Date Completed</h3>
+                <p>
+                    <? if(data.order.date_completed == null) {?>
+                        Not Completed
+                    <? } else { ?>
+                        <?=data.order.date_completed ?>
+                    <? } ?>
+                </p>
+
+                <hr>
+                <h2>Food Package</h2>
+                <p>Package ID: <a href="/admin/dashboard/food-packages/view/<?=data.order.food_package.id?>"><?=data.order.food_package.id?></a></p>
+                <p>Package Name: <?=data.order.food_package.name?></p>
+                <h3>Package Information</h3>
+                <p><?=data.order.food_package.information?></p>
+                <h3>Package Contents</h3>
+                <p><?=data.order.food_package.contents?></p>
+                <h3>Package Dietary Requirements</h3>
+                <p><?=data.order.food_package.dietary_requirements?></p>
+
+            </div>
+            <div class="grid-two-half-right">
+                <h2>Customer Information</h2>
+                <p>User ID: <a href="/admin/dashboard/users/view/<?=data.order.user.id?>"><?=data.order.user.id?></a></p>
+                <h3>First Name</h3>
+                <p><?=data.order.user.first_name?></p>
+
+                <h3>Last Name</h3>
+                <p><?=data.order.user.last_name?></p>
+
+                <h3>Email</h3>
+                <p><?=data.order.user.email?></p>
+
+                <h3>Postcode</h3>
+                <p><?=data.order.user.postcode?></p>
+
+                <h3>Address</h3>
+                <p><?=data.order.user.address?></p>
+
+                <h3>Phone Number</h3>
+                <?=data.order.user.phone_number?>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

@@ -1,0 +1,4 @@
+*.env
+.idea/
+*.js
+!client-admin/public/js/*.js

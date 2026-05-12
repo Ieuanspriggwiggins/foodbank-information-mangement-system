@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body{
+    margin: 0;
+    font-family: 'Inter', sans-serif;    
+}
+
+.flex-hor-cen{
+    display: flex;
+    justify-content: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+@function rem-calc($pixel_val){
+    $rem: calc($pixel_val / 16);
+    @return #{$rem}rem;
+}

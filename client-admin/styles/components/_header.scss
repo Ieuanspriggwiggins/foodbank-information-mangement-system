@@ -1,0 +1,16 @@
+.main-header{
+  background-color: black;
+  color: white;
+  padding: 40px;
+  @media(max-width: rem-calc(425)){
+    padding: 15px;
+  }
+  h1{
+    margin: 0;
+    @media(max-width: rem-calc(425)){
+      font-size: rem-calc(18);
+      line-height: rem-calc(40);
+      text-align: center;
+    }
+  }
+}

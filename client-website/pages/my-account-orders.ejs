@@ -1,0 +1,53 @@
+<?-include('../components/head', {page_title: 'My Orders'})?>
+
+<main class="full-width">
+    <div class="inline-nav">
+        <div class="account-grid">
+            <div class="my-account-links-container">
+                <a href="/my-account/orders/1" class="selected">My Orders</a>
+                <a href="/my-account/manage">Manage my Account</a>
+            </div>
+            <div class="my-account-content-container">
+                <h2>Your Orders (Most Recent First)</h2>
+                <? if (locals.hasOrders) { ?>
+                    <div class="my-account-orders-pagination">
+                        <? if(Number(locals.currentPage) === 1) { ?>
+                            <a class="orders-pagination-btn" href="/my-account/orders/1">&lt;</a>
+                        <? } else {?>
+                            <a class="orders-pagination-btn" href="/my-account/orders/<?=Number(locals.currentPage) - 1?>">&lt;</a>
+                        <? } ?>
+
+                        <p class="pagination-location-display"><?=locals.currentPage?> / <?=locals.maxPage?></p>
+
+                        <? if(Number(locals.currentPage) === Number(locals.maxPage)) { ?>
+                            <a class="orders-pagination-btn" href="/my-account/orders/<?=locals.maxPage?>">&gt;</a>
+                        <? } else {?>
+                        <a class="orders-pagination-btn" href="/my-account/orders/<?=Number(locals.currentPage) + 1?>">&gt;</a>
+
+                        <? } ?>
+                    </div>
+
+                    <? for(let i = 0; i < locals.orders.length; i++) { ?>
+                        <div class="order-item">
+                            <h3>Order ID: <?=locals.orders[i].id?></h3>
+                            <h4>Order Status: <?=locals.orders[i].order_status[0] ?></h4>
+                            <p>Order Date: <?=locals.orders[i].date_created?></p>
+                            <? if(locals.orders[i].order_status[0] === 'Completed') { ?>
+                                <p>Date Completed: <?=locals.orders[i].date_completed?></p>
+                            <? } ?>
+                            <p>Order Type: <?=locals.orders[i].order_type[0]?></p>
+
+                            <h4>Package Details</h4>
+                            <p>Package Name: <?=locals.orders[i].food_package.name?>?></p>
+                            <p>Package Information: <?=locals.orders[i].food_package.information?></p>
+                        </div>
+                    <? } ?>
+                <? } else { ?>
+                    <h2>There are no orders to display at this time</h2>
+                <? } ?>
+            </div>
+        </div>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'My Orders'})?>

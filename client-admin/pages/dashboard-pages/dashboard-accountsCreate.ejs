@@ -1,0 +1,47 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/accounts">< Back</a>
+        </div>
+
+        <div class="flex-hor-cen">
+
+            <form class="dashboard-form" method="POST" action="/admin/api/admin-account">
+                <h2>Create New Staff Account</h2>
+                
+                <label for="input-fullname">Full Name</label>
+                <input required placeholder="John Doe" minlength="1" type="text" name="input-fullname" id="input-fullname">
+
+                <label for="input-email">Email Address</label>
+                <input required placeholder="john@example.com" type="email" name="input-email" id="input-email">
+
+                <label for="input-password">Password</label>
+                <input required type="password" name="input-password" id="input-password" title="Password must 8-20 characters long, contain at least one number, one letter and one special character" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+
+                <label for="input-passwordConfirm">Confirm Password</label>
+                <input required type="password" name="input-passwordConfirm" id="input-passwordConfirm" title="Password must 8-20 characters long, contain at least one number, one letter and one special character" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+               
+                <? if(data.password_match) { ?>
+                    <p class="error" style="text-align: center">Passwords do not match</p>
+                <? } ?>
+
+                <? if(data.created_success) { ?>
+                    <p class="success-result" style="text-align: center;">Account Created Successfully</p>
+                <? } ?>
+
+                <? if(data.email_in_use) { ?>
+                    <p class="error" style="text-align: center">Email already in use.</p>
+                <? } ?>
+
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

@@ -1,0 +1,39 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <div id="search-filter">
+                <button class="search-filter-clear-btn" id="search-filter-clear-btn"><span class="search-filter-text">Test</span><span class="search-filter-clear-cross">X</span></button>
+                <label for="filter-search-input">Search: </label>
+                <input id="filter-search-input" type="search" />
+                <input type="button" id="filter-search-btn" class="main-btn" value="Search" />
+            </div>
+        </div>
+        <?-include('../../components/pagination')?>
+        <div class="data-table-container">
+            <table id="data-table" data-field="donations">
+                <thead>
+                <tr>
+                    <th data-dataname="donation_email" data-sortname="donation_email" class="selected-desc" data-selected="1">Email Address</th>
+                    <th data-dataname="donation_name" data-sortname="donation_name">Donor Name</th>
+                    <th data-dataname="amount_total" data-sortname="amount_total">Donated Total</th>
+                    <th data-dataname="donation_address_city" data-sortname="donation_address_city">City</th>
+                    <th data-dataname="donation_address_line_1" data-sortname="donation_address_line_1">Address Line 1</th>
+                    <th data-dataname="donation_date" data-sortname="donation_date">Donation Date</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="table-loading-modal">
+            <span class="material-icons">replay</span>
+        </div>
+        <script src="/admin/js/AdminData.js"></script>
+    </div>
+
+</main>
+
+<?- include('../../components/foot') ?>

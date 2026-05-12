@@ -1,0 +1,39 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <h2>Orders Awaiting Confirmation</h2>
+        <div class="data-table-container table-container">
+            <? if(locals.unconfirmedOrders.length > 0) { ?>
+                <table class="homepage-table" id="data-table">
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User Name</th>
+                        <th>Food Package</th>
+                        <th>Date Ordered</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <? for(let i = 0; i < locals.unconfirmedOrders.length; i++){?>
+                    <? const current = locals.unconfirmedOrders[i] ?>
+                    <tr>
+                        <td><p><a href="/admin/dashboard/orders/view/<?=current.id?>"><?=current.id?></a></p></td>
+                        <td><p><?=current.user.first_name + ' ' + current.user.last_name?></p></td>
+                        <td><p><?=current.food_package.name?></p></td>
+                        <td><p><?=current.date_created?></p></td>
+                    </tr>
+                    <? } ?>
+                    </tbody>
+                </table>
+            <? } else { ?>
+                <h3>There are no orders awaiting confirmation at this time</h3>
+            <? } ?>
+        </div>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

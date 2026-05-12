@@ -1,0 +1,78 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/users">&lt; Back</a>
+            <? if(data.user.account_type.toString() === 'Service'){  ?>
+                <form onsubmit="return openModal('Are you sure you want to delete this user?', () => this.submit())" action="/admin/api/users?_method=delete" method="POST">
+                    <input type="hidden" name="id" value="<?=data.user.id?>" />
+                    <input type="submit" class="delete-btn" value="Delete" />
+                </form>
+            <? } ?>
+        </div>
+        <div class="flex-hor-cen">
+            <!--  If the user is a service user, allow the staff to edit the information  -->
+            <? if(data.user.account_type.toString() === 'Service') { ?>
+                <form class="dashboard-form" method="POST" action="/admin/api/users?_method=put">
+                    <input type="hidden" name="user-id" value="<?=data.user.id?>" >
+                    <h2>User Information</h2>
+                    <label for="input-firstname">First Name</label>
+                    <input type="text" name="input-firstname" id="input-firstname" value="<?=data.user.first_name?>" required>
+
+                    <label for="input-surname">Last Name</label>
+                    <input type="text" name="input-surname" id="input-surname" value="<?=data.user.last_name?>" required>
+
+                    <label for="input-email">Email</label>
+                    <input type="email" name="input-email" id="input-email" value="<?=data.user.email?>" required>
+
+                    <label for="input-phone">Phone Number</label>
+                    <input type="text" name="input-phone" id="input-phone" value="<?=data.user.phone_number?>" required>
+
+                    <label for="input-postcode">Postcode</label>
+                    <input type="text" name="input-postcode" id="input-postcode" value="<?=data.user.postcode?>" required>
+
+                    <label for="input-address">Address</label>
+                    <textarea name="input-address" id="input-address"><?=data.user.address?></textarea>
+
+                    <input type="submit" value="Submit">
+                </form>
+            <? } ?>
+        </div>
+
+        <? if(data.user.account_type.toString() === 'Website') { ?>
+            <h2 class="grey-mid">First Name</h2>
+            <p><?=data.user.first_name?></p>
+
+            <h2 class="grey-mid">Last Name</h2>
+            <p><?=data.user.last_name?></p>
+
+            <h2 class="grey-mid">Email</h2>
+            <p><?=data.user.email?></p>
+
+            <h2 class="grey-mid">Postcode</h2>
+            <p><?=data.user.postcode?></p>
+
+            <h2 class="grey-mid">Address</h2>
+            <p><?=data.user.address?></p>
+
+            <h2 class="grey-mid">Phone Number</h2>
+            <p><?=data.user.phone_number?></p>
+
+            <h2 class="grey-mid">Account Type</h2>
+            <p><?=data.user.account_type?></p>
+
+            <h2 class="grey-mid">Date Created</h2>
+            <p><?=data.user.date_created?></p>
+        <? } ?>
+    </div>
+</main>
+
+<?-include('../../components/confirmation-modal') ?>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

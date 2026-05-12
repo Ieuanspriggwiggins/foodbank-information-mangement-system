@@ -1,0 +1,38 @@
+
+<?-include('../components/head', {title: 'Administrator Setup'}) ?>
+
+<?-include('../components/header', {header_title: 'Management Dashboard \- Create Administrator Account'}) ?>
+
+<h2 class="text-center">Create Administrator Account</h2>
+<main>
+    <div class="flex-hor-cen">
+        <div class="login-container">
+            <form id="login-form" method="POST" action="api/setup-account">
+
+                <label for="email_input">Email</label>
+                <input required type="email" name="email_input" id="email_input" placeholder="example@example.com" />
+
+                <label for="name_input">Name</label>
+                <input required type="text" name="name_input" id="name_input" placeholder="John Doe" />
+
+                <label for="password_input">Password</label>
+                <input required type="password" name="password_input" title="Password must 8-20 characters long, contain at least one number, one letter and one special character" minLength="8" id="password_input" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+
+                <label for="password_confirm_input">Confirm Password</label>
+                <input required type="password" name="password_confirm_input" title="Password must 8-20 characters long, contain at least one number, one letter and one special character" minLength="8" id="password_confirm_input" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" />
+
+                <span class="error" id="error"></span>
+
+                <? if(locals.display_error){ ?>
+                    <span class="error">
+                        An error occurred. Please try again.
+                    </span>
+                <? } ?>
+
+                <input type="submit" id="submit-btn" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+<script defer src="js/setup.js"></script>
+<?- include('../components/foot'); ?>

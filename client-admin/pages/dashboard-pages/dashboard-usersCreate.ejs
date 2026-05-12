@@ -1,0 +1,43 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/users">< Back</a>
+        </div>
+
+        <div class="flex-hor-cen">
+            <form class="dashboard-form" method="POST" action="/admin/api/users">
+                <? if(data.success) { ?>
+                <span class="success-result">User Record Created Successfully</span>
+                <? } ?>
+                <h2>Create New User</h2>
+                <span>Notice - <i>The purpose of this form is to create a user record on the system for users who do not have access to resources to access to the website. Therefore, this form cannot be used to create accounts</i></span>
+
+                <label for="firstname-input">First Name*</label>
+                <input type="text" name="firstname-input" id="firstname-input" required>
+
+                <label for="surname-input">Surname*</label>
+                <input type="text" name="surname-input" id="surname-input" required>
+
+                <label for="email-input">Email</label>
+                <input type="email" name="email-input" id="email-input">
+
+                <label for="phone-input">Phone Number</label>
+                <input type="text" name="phone-input" id="phone-input" />
+
+                <label for="postcode-input">Postcode - <i>If no postcode, put 'none'</i></label>
+                <input type="text" name="postcode-input" id="postcode-input" required>
+
+                <label for="address-input">Address - <i>If no address, put 'none'</i></label>
+                <textarea name="address-input" id="address-input"></textarea>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

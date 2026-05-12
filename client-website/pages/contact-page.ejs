@@ -1,0 +1,28 @@
+<?-include('../components/head', {page_title: 'Contact Us'})?>
+<main class="full-width">
+    <div class="inline-nav">
+        <article>
+            <? if(locals.form_submit) { ?>
+                <p class="success-result">The form was submitted successfully, we will be in contact</p>
+            <? } ?>
+            <h2>Contact Us</h2>
+            <p>- Use the form below to contact us or ask any queries you have</p>
+            <form class="website-form" action="/contact-us" method="post">
+                <label for="name-input">Your Name</label>
+                <input type="text" id="name-input" name="name-input" placeholder="Your Name" />
+
+                <label for="email-input">Your Email</label>
+                <input type="text" id="email-input" name="email-input" placeholder="Your Email" />
+
+                <label for="phone-input">Your Contact Number</label>
+                <input type="text" id="phone-input" name="phone-input" placeholder="Your Phone Number (optional)"/>
+
+                <label for="message-input">Your Message</label>
+                <textarea name="message-input" id="message-input" class="large-textarea" placeholder="Your Message (include details of items you wish to donate)"></textarea>
+
+                <input type="submit" value="Submit" class="orange-button">
+            </form>
+        </article>
+    </div>
+</main>
+<?-include('../components/foot', {page_title: 'Contact Us'})?>

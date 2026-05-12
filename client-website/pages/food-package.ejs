@@ -1,0 +1,55 @@
+<?-include('../components/head', {page_title: 'Food Packages'})?>
+<main class="full-width">
+    <div class="inline-nav">
+        <article>
+            <h2>Food Packages</h2>
+            <div class="filtering-section">
+                <div class="dietary-filtering-container">
+                    <? for(key in locals.dietary_requirements_obj) { ?>
+                        <div style="display: block;">
+                            <input type="checkbox" id="dr_<?=key?>" onchange="onDietaryRequirementCheck(event)"<? if(locals.dietaryFilters !== null){ ?> <? if(locals.dietaryFilters[locals.dietary_requirements_obj[key]] === 1){?>checked<?}?><?}?>>
+
+                            <label for="dr_<?=key?>"><?=locals.dietary_requirements_obj[key]?></label>
+                        </div>
+                    <? } ?>
+                </div>
+                <div class="search-filter-container">
+                    <form onsubmit="return onSearchSubmit(event)">
+                        <? if(locals.searchString) { ?>
+                            <a class="remove-search-btn" href="/food-packages/page/<?=locals.pageNumber + locals.queryStringWithoutSearch?>"><?=locals.searchString?></a>
+                        <? } ?>
+                        <label for="search-filter-input">Food Package: </label>
+                        <div>
+                            <input type="text" name="search" id="search-filter-input" placeholder="Search">
+                            <button class="material-icons">search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <?-include('../components/pagination', {url: '/food-packages/page/'})?>
+            <div class="food-packages-list-container">
+                <? if(locals.foodPackages.length > 0) { ?>
+                    <? for(let i = 0; i < locals.foodPackages.length; i++){?>
+                        <div class="food-package-container">
+                            <span class="food-package-title"><a href="/food-package/<?=locals.foodPackages[i].id?>"><?=locals.foodPackages[i].name?></a></span>
+                            <h3>Information</h3>
+                            <p><?=locals.foodPackages[i].information?></p>
+                            <h3>Contents</h3>
+                            <p><?=locals.foodPackages[i].contents?></p>
+                            <h3>Dietary Information</h3>
+                            <ul>
+                                <? for(let j = 0; j < locals.foodPackages[i].dietary_requirements.length; j++){ ?>
+                                    <li><?=locals.foodPackages[i].dietary_requirements[j]?></li>
+                                <? } ?>
+                            </ul>
+                        </div>
+                    <?}?>
+                <?} else {?>
+                    <h2><strong>No food packages available</strong></h2>
+                <?}?>
+            </div>
+            <?-include('../components/pagination', {url: '/food-packages/page/'})?>
+        </article>
+    </div>
+</main>
+<?-include('../components/foot', {page_title: 'Food Packages'})?>

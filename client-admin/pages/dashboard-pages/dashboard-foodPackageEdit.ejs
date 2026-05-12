@@ -1,0 +1,85 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/food-packages/view/<?=data.FoodPackage.id?>">&lt; Back</a>
+        </div>
+
+        <div class="flex-hor-cen">
+            <form class="dashboard-form" onsubmit="return checkConfirmFormSubmit('Are you sure you want to update this food package?')" id="update-package-form" method="POST" action="/admin/api/food-package?_method=PUT">
+                <input type="hidden" value="<?=data.FoodPackage.id?>" name="food-package-id" id="food-package-id">
+                <h2>Update Food Package Information</h2>
+
+                <label for="food-package-status">Package Status</label>
+                <select name="food-package-status" id="food-package-status">
+                    <option <? if(data.FoodPackage.stock_status.toString() === 'in_stock'){?>selected<?}?> value="in_stock">In Stock</option>
+                    <option <? if(data.FoodPackage.stock_status.toString() === 'out_of_stock'){?>selected<?}?> value="out_of_stock">Out Of Stock</option>
+                </select>
+
+                <label for="food-package-name">Food Package Name</label>
+                <input required type="text" name="food-package-name" id="food-package-name" value="<?=data.FoodPackage.name?>"/>
+
+                <label for="food-package-information">Food Package Information</label>
+                <textarea id="food-package-information" name="food-package-information" placeholder="Food Package Information"><?=data.FoodPackage.information?></textarea>
+
+                <label for="food-package-contents">Food Package Contents</label>
+                <textarea id="food-package-contents" name="food-package-contents" placeholder="Food Package Contents"><?=data.FoodPackage.contents?></textarea>
+
+                <h3>Dietary Requirements</h3>
+                <div class="dietary-requirements">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="nut-free-check" name="nut-free-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Nut Free')) { ?> checked <?}?>>
+                        <label for="nut-free-check">Nut-Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="dairy-free-check" name="dairy-free-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Dairy Free')) { ?> checked <?}?>>
+                        <label for="dairy-free-check">Dairy-Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="gluten-free-check" name="gluten-free-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Gluten Free')) { ?> checked <?}?>>
+                        <label for="gluten-free-check">Gluten Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="vegan-check" name="vegan-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Vegan')) { ?> checked <?}?>>
+                        <label for="vegan-check">Vegan</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="vegetarian-check" name="vegetarian-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Vegetarian')) { ?> checked <?}?>>
+                        <label for="vegetarian-check">Vegetarian</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="pescatarian-check" name="pescatarian-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Pescatarian')) { ?> checked <?}?>>
+                        <label for="pescatarian-check">Pescatarian</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="fish-free-check" name="fish-free-check"z
+                        <? if(data.FoodPackage.dietary_requirements.includes('Fish & Shellfish Free')) { ?> checked <?}?>>
+                        <label for="fish-free-check">Fish & Shellfish Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="halal-check" name="halal-check"
+                        <? if(data.FoodPackage.dietary_requirements.includes('Halal')) { ?> checked <?}?>>
+                        <label for="halal-check">Halal</label>
+                    </div>
+
+                </div>
+
+                <input type="submit" value="Update" onclick="updateFoodPackageRequest(event)" data-packageId="<?=data.FoodPackage.id?>"/>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

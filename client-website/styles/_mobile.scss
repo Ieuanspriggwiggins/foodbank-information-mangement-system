@@ -1,0 +1,91 @@
+.mobile-navigation-backdrop{
+  position: fixed;
+  display: none;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  z-index: 4;
+  .mobile-navigation-content-container{
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background-color: white;
+    #mobile-navigation-close-btn{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 32px;
+    }
+    nav{
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      a{
+        text-decoration: none;
+        color: black;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        text-align: right;
+        font-size: 20px;
+      }
+      .navigation-selected{
+        text-decoration: underline;
+        text-underline-offset: 0.5em;
+      }
+    }
+  }
+}
+
+.slide-in-animation{
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+}
+
+.slide-out-animation{
+  animation-name: slide-out;
+  animation-duration: 0.5s;
+}
+
+.fade-in-animation{
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+}
+
+.fade-out-animation{
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+}
+
+@keyframes fade-in{
+  from {background-color: rgba(0,0,0,0)}
+  to {background-color: rgba(0,0,0,0.75)}
+}
+
+@keyframes fade-out{
+  from {background-color: rgba(0,0,0,0.75)}
+  to {background-color: rgba(0,0,0,0)}
+}
+
+@keyframes slide-in{
+  from {left: -250px}
+  to {left: 0}
+}
+
+@keyframes slide-out{
+  from{left: 0}
+  to{left: -250px;}
+}
+
+#mobile-navigation-button{
+  @media(max-width: 769px){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 32px;
+  }
+  display: none;
+}

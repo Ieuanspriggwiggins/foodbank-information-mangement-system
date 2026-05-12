@@ -1,0 +1,60 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/food-packages">&lt; Back</a>
+            <div style="display: flex">
+                <a class="edit-btn" href="/admin/dashboard/food-packages/edit/<?=data.FoodPackage.id?>">Edit</a>
+                <!-- When the form is submitted, open the modal and give a callback to submit the form if action confirmed in modal -->
+                <form onsubmit="return openModal('Are you sure you want to delete this food package?', () => this.submit())" action="/admin/api/food-package?_method=delete" method="POST">
+                    <input type="hidden" name="id" value="<?=data.FoodPackage.id?>" />
+                    <input type="submit" class="delete-btn" value="Delete" />
+                </form>
+            </div>
+        </div>
+        <article>
+            <h2 class="grey-mid">Package Name</h2>
+            <p><?=data.FoodPackage.name?></p>
+        </article>
+
+        <article>
+            <h2 class="grey-mid">Package Information / Description</h2>
+            <p><?-data.FoodPackage.information ?></p>
+        </article>
+
+        <article>
+            <h2 class="grey-mid">Package Contents</h2>
+            <p><?-data.FoodPackage.contents?></p>
+        </article>
+
+        <article>
+            <h2 class="grey-mid">Dietary Information</h2>
+                <? if(data.FoodPackage.dietary_requirements.length > 0) { ?>
+                    <ul>
+                        <? for(let i = 0; i < data.FoodPackage.dietary_requirements.length; i++) { ?>
+                            <li><?=data.FoodPackage.dietary_requirements[i] ?></li>
+                        <? } ?>
+                    </ul>
+                <? } else { ?>
+                    <p>None Specified</p>
+                <? } ?>
+        </article>
+
+        <? const stockStatusString = {'in_stock': 'In Stock', 'out_of_stock': 'Out Of Stock'} ?>
+
+        <article>
+            <h2 class="grey-mid">Package Status</h2>
+            <p><?=stockStatusString[data.FoodPackage.stock_status] ?></p>
+        </article>
+    </div>
+</main>
+
+<?-include('../../components/confirmation-modal') ?>
+
+<script src="/admin/js/Admin.js" defer></script>
+
+<?- include('../../components/foot') ?>

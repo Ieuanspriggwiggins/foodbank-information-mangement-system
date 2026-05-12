@@ -1,0 +1,53 @@
+<div id="confirm-modal">
+    <div id="confirm-modal-content">
+        <h2>Confirm Option</h2>
+        <p id="confirm-modal-message">Are you sure you want to complete this action?</p>
+
+        <div class="flex-row">
+            <button id="confirm-modal-confirm-button" class="orange-button">Confirm</button>
+            <button id="confirm-modal-close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<script defer>
+    const confirmModal = document.getElementById('confirm-modal');
+    const confirmModalContent = document.getElementById('confirm-modal-content');
+    const closeModalButton = document.getElementById('confirm-modal-close-button');
+    const confirmModalButton = document.getElementById('confirm-modal-confirm-button');
+
+    /**
+     * Responsible for opening the confirmation modal.
+     * @param message The message to display for the user.
+     * @param callback The callback executed upon the pressing of the button to confirm
+     */
+    function openModal(message, callback) {
+        //Set the message text to the parsed message.
+        document.getElementById('confirm-modal-message').innerHTML = message;
+        confirmModal.style.display = 'flex';
+
+        //When the confirm button of the modal is pressed. Use the callback function provided.
+        confirmModalButton.addEventListener('click', () => {
+            callback();
+        })
+
+        return false; //ensure that no default action is taken from forms or other input types.
+    }
+
+    /**
+     * Closes the modal - hides from view
+     */
+    function closeModal() {
+        confirmModal.style.display = 'none';
+    }
+
+    //Close the modal if the close button is pressed.
+    closeModalButton.addEventListener('click', closeModal);
+
+    /**
+     * If the space outside the modal is clicked. Close it.
+     */
+    confirmModal.addEventListener('click', (event) => {
+        if(event.target === confirmModal) closeModal()
+    })
+</script>

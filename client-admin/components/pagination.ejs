@@ -1,0 +1,17 @@
+<div class="pagination-controls-container">
+    <div class="pagination-buttons">
+        <button onclick="onPagination(-1)">&lt;</button>
+        <span id="page-number-display">1</span>
+        <button onclick="onPagination(1)">&gt;</button>
+    </div>
+    <div class="pagination-other-controls">
+        <label for="pagination-quick-change-input">Change to page: </label>
+        <input id="pagination-quick-change-input" type="number" min="1" value="1">
+        <button id="pagination-quick-change-btn" onclick="paginationQuickChange()">Change</button>
+    </div>
+    <div class="pagination-other-controls">
+        <label for="per-page-selector">Show Per Page: </label>
+        <input id="per-page-selector" type="number" min="10" max="50" value="10">
+        <button id="change-per-page-btn" onclick="changeShowPerPage()">Change</button>
+    </div>
+</div>

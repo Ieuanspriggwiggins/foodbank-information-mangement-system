@@ -1,0 +1,69 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="back-btn" href="/admin/dashboard/food-packages">< Back</a>
+        </div>
+
+        <div class="flex-hor-cen">
+
+            <form class="dashboard-form" method="POST" action="/admin/api/food-package">
+                <h2>Food Package Information Form</h2>
+
+                <label for="food-package-name">Food Package Name</label>
+                <input type="text" name="food-package-name" id="food-package-name"/>
+
+                <label for="food-package-information">Food Package Information</label>
+                <textarea id="food-package-information" name="food-package-information" placeholder="Food Package Information"></textarea>
+
+                <label for="food-package-contents">Food Package Contents</label>
+                <textarea id="food-package-contents" name="food-package-contents" placeholder="Food Package Contents"></textarea>
+
+                <h3>Dietary Requirements</h3>
+                <div class="dietary-requirements">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="nut-free-check" name="nut-free-check">
+                        <label for="nut-free-check">Nut-Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="dairy-free-check" name="dairy-free-check">
+                        <label for="dairy-free-check">Dairy-Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="gluten-free-check" name="gluten-free-check">
+                        <label for="gluten-free-check">Gluten Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="vegan-check" name="vegan-check">
+                        <label for="vegan-check">Vegan</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="vegetarian-check" name="vegetarian-check">
+                        <label for="vegetarian-check">Vegetarian</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="pescatarian-check" name="pescatarian-check">
+                        <label for="pescatarian-check">Pescatarian</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="fish-free-check" name="fish-free-check">
+                        <label for="fish-free-check">Fish & Shellfish Free</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="halal-check" name="halal-check">
+                        <label for="halal-check">Halal</label>
+                    </div>
+
+                </div>
+
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

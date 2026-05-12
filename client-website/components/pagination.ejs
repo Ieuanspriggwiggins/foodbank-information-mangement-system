@@ -1,0 +1,27 @@
+<? if(Number(locals.paginationObject.totalPages) > 0) { ?>
+<div class="pagination-container">
+    <? if(Number(locals.paginationObject.totalPages) === 1){ ?>
+        <a class="pagination-btn">1</a>
+    <? } else { ?>
+        <? if(Number(locals.pageNumber) === 1) { ?>
+            <a class="pagination-btn selected" href="<?=locals.url + '1' + locals.queryString ?>">1</a>
+            <a class="pagination-btn" href="<?=locals.url + '2' + locals.queryString ?>">2</a>
+            <a class="pagination-btn" href="<?=locals.url + '2' + locals.queryString ?>">&gt;</a>
+        <? } ?>
+
+        <? if(Number(locals.pageNumber) !== 1 && locals.pageNumber.toString() !== locals.paginationObject.totalPages.toString()) {?>
+            <a class="pagination-btn" href="<?=locals.url + locals.prevPage + locals.queryString?>">&lt;</a>
+            <a class="pagination-btn" href="<?=locals.url + locals.prevPage + locals.queryString?>"><?=locals.prevPage?></a>
+            <a class="pagination-btn selected" href="<?=locals.url + locals.pageNumber + locals.queryString?>"><?=locals.pageNumber?></a>
+            <a class="pagination-btn" href="<?=locals.url + locals.nextPage + locals.queryString?>"><?=locals.nextPage?></a>
+            <a class="pagination-btn" href="<?=locals.url + locals.nextPage + locals.queryString?>">&gt;</a>
+        <? } ?>
+
+        <? if(Number(locals.pageNumber) !== 1 && locals.pageNumber.toString() === locals.paginationObject.totalPages.toString()) { ?>
+            <a class="pagination-btn" href="<?=locals.url + locals.prevPage + locals.queryString ?>">&lt;</a>
+            <a class="pagination-btn" href="<?=locals.url + locals.prevPage + locals.queryString ?>"><?=locals.prevPage?></a>
+            <a class="pagination-btn selected" href="<?=locals.url + locals.pageNumber + locals.queryString?>"><?=locals.pageNumber?></a>
+        <? } ?>
+    <? } ?>
+</div>
+<? } ?>

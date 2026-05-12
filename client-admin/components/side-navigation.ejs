@@ -1,0 +1,54 @@
+<div class="side-navigation-container">
+        <a href="/admin/dashboard">
+            <div class="navigation-item <?if(selected === 'dashboard'){?>nav-selected<?}?>">
+                <span class="material-icons">dashboard</span><span class="navigation-item-title">Dashboard</span>
+            </div>
+        </a>
+        <a href="/admin/dashboard/orders">
+            <div class="navigation-item <?if(selected === 'orders'){?>nav-selected<?}?>">
+                <span class="material-icons">shopping_basket</span><span class="navigation-item-title">Orders</span>
+            </div>
+        </a>
+
+        <a href="/admin/dashboard/food-packages">
+            <div class="navigation-item <?if(selected === 'food_packages'){?>nav-selected<?}?>">
+                <span class="material-icons">shopping_bag</span><span class="navigation-item-title">Food Packages</span>
+            </div>
+        </a>
+
+        <a href="/admin/dashboard/users">
+            <div class="navigation-item <?if(selected === 'users'){?>nav-selected<?}?>">
+                <span class="material-icons">person</span><span class="navigation-item-title">Users</span>
+            </div>
+        </a>
+        <a href="/admin/dashboard/configuration">
+            <div class="navigation-item <?if(selected === 'configuration'){?>nav-selected<?}?>">
+                <span class="material-icons">settings</span><span class="navigation-item-title">Configuration</span>
+            </div>
+        </a>
+        <a href="/admin/dashboard/donations">
+            <div class="navigation-item <?if(selected === 'donations'){?>nav-selected<?}?>">
+                <span class="material-icons">attach_money</span><span class="navigation-item-title">Donations</span>
+            </div>
+        </a>
+        <a href="/admin/dashboard/contact-tickets">
+            <div class="navigation-item <?if(selected === 'contact_tickets'){?>nav-selected<?}?>">
+                <span class="material-icons">import_contacts</span><span class="navigation-item-title">Contact Tickets</span>
+            </div>
+        </a>
+        <? if(user.user_role == 'administrator') { ?>
+            <a href="/admin/dashboard/accounts">
+                <div class="navigation-item <?if(selected === 'accounts'){?>nav-selected<?}?>">
+                    <span class="material-icons">person</span><span class="navigation-item-title">Accounts</span>
+                </div>
+            </a>
+        <?}?>
+        <a href="/">
+            <div class="navigation-item">
+                <span class="material-icons">home</span><span class="navigation-item-title">Go To Website</span>
+            </div>
+        </a>
+        <form method="POST" action="/admin/logout">
+            <button id="logout-btn">Logout</button>
+        </form>
+</div>

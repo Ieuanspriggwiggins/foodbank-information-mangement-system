@@ -1,0 +1,73 @@
+<?-include('../components/head', {page_title: locals.food_package.name})?>
+<main class="full-width">
+    <? if(locals.logged_in) { ?>
+        <div id="order-modal">
+            <div class="modal-content-container">
+
+                <h2>Order Details</h2>
+                <span onclick="closeModal()" class="material-icons close-btn">close</span>
+
+                <form method="POST" action="/food-package/order/<?=locals.food_package.id?>">
+
+                    <label for="order-type-input">Order Type</label>
+                    <select name="order-type-input" id="order-type-input">
+                        <option>Collection</option>
+                        <option>Delivery</option>
+                    </select>
+
+                    <div class="grid-two-container-consist">
+                        <div>
+                            <h3>Package Details</h3>
+                            <label>Package Name:</label>
+                            <p><?=locals.food_package.name?></p>
+                            <label>Package Contents:</label>
+                            <p><?=locals.food_package.contents?></p>
+                        </div>
+
+                        <div>
+                            <h3>Your Details</h3>
+                            <label>Your Postcode:</label>
+                            <p><?=locals.user.postcode?></p>
+                            <label>Your Address:</label>
+                            <p><?=locals.user.address?></p>
+                        </div>
+                    </div>
+
+                    <span>Note:</span>
+                    <p class="notice">Please ensure the details above are correct before placing the order. If you need to change any details, such as your address, go to your account settings <a href="/my-account">here</a></p>
+
+                    <input type="hidden" name="food-package-input" value="<?=locals.food_package.id?>">
+                    <div class="buttons-container">
+                        <input class="orange-button" type="submit" value="Place Order">
+                    </div>
+                </form>
+            </div>
+        </div>
+    <? } ?>
+
+    <div class="inline-nav">
+        <article>
+            <h2><?=locals.food_package.name?></h2>
+
+            <div>
+                <h3>Contents</h3>
+                <p><?=locals.food_package.contents?></p>
+            </div>
+
+            <div class="order-section">
+                <? if(locals.logged_in) { ?>
+                    <button onclick="showModal()" class="orange-button">Order</button>
+                <? } else { ?>
+                    <p><strong>Notice - </strong> You must be logged in to place an order. Alternatively, you can contact us separately to make an order</p>
+                <? } ?>
+            </div>
+
+            <h3>Information</h3>
+            <p><?=locals.food_package.information?></p>
+
+        </article>
+    </div>
+</main>
+
+<script src="/js/app.js" defer></script>
+<?-include('../components/foot', {page_title: locals.food_package.name})?>

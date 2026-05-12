@@ -1,0 +1,12 @@
+<?-include('../components/head', {page_title: 'Order Placed'})?>
+
+<main class="full-width">
+    <div class="inline-nav" style="text-align: center; margin-bottom: 250px">
+        <h1>Your order has been placed.</h1>
+        <h2>Your Order: <?=locals.order.id.toString().toUpperCase()?></h2>
+        <p>Your order has been placed. Your order will have to be accepted before it will be processed. To check the
+        status of your order, please go to the My Account section <a href="/my-account/orders/1">here</a></p>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'Order Placed'})?>

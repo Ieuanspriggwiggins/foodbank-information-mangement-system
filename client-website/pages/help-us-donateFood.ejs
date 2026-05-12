@@ -1,0 +1,43 @@
+<?-include('../components/head', {page_title: 'Donate Food'})?>
+
+
+<main class="full-width">
+    <div class="contained-80">
+        <article>
+            <? if(locals.submissionSuccess) {?>
+                <p class="success-result">Your message has been received. We will contact you soon</p>
+            <?}?>
+            <h2>Donate Food Today</h2>
+            <p>Any food you could give us would help massively. There are some items we are in need of that are listed below</p>
+            <ul>
+                <? for(let i = 0; i < locals.required_items.length; i++) {?>
+                    <li><?=locals.required_items[i].itemString?></li>
+                <? } ?>
+            </ul>
+        </article>
+
+        <article>
+        <h2>Food Donation Form</h2>
+            <form class="website-form" action="/help-us/donate-food" method="post">
+                <label for="name-input">Your Name</label>
+                <input type="text" id="name-input" name="name-input" placeholder="Your Name" />
+
+                <label for="org-input">Your Organisation</label>
+                <input type="text" id="org-input" name="org-input" placeholder="Your Organisation (optional)"/>
+
+                <label for="email-input">Your Email</label>
+                <input type="text" id="email-input" name="email-input" placeholder="Your Email" />
+
+                <label for="phone-input">Your Contact Number</label>
+                <input type="text" id="phone-input" name="phone-input" placeholder="Your Phone Number (optional)"/>
+
+                <label for="message-input">Your Message</label>
+                <textarea name="message-input" id="message-input" class="large-textarea" placeholder="Your Message (include details of items you wish to donate)"></textarea>
+
+                <input type="submit" value="Submit" class="orange-button">
+            </form>
+        </article>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'Donate Food'})?>

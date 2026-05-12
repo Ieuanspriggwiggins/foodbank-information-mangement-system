@@ -1,0 +1,38 @@
+<?- include('../../components/head') ?>
+
+<?- include('../../components/header', {header_title: title}) ?>
+
+<main class="dashboard-main">
+    <?-include('../../components/side-navigation') ?>
+    <div class="main-content">
+        <div class="top-bar">
+            <a class="main-btn" href="/admin/dashboard/users/create">Create New</a>
+            <div id="search-filter">
+                <button class="search-filter-clear-btn" id="search-filter-clear-btn"><span class="search-filter-text">Test</span><span class="search-filter-clear-cross">X</span></button>
+                <label for="filter-search-input">Search: </label>
+                <input id="filter-search-input" type="search" />
+                <input type="button" id="filter-search-btn" class="main-btn" value="Search" />
+            </div>
+        </div>
+        <?-include('../../components/pagination')?>
+        <div class="data-table-container">
+            <table id="data-table" data-field="users">
+                <thead>
+                <tr>
+                    <th data-dataname="first_name" data-sortname="first_name" class="selected-desc" data-selected="1">First Name</th>
+                    <th data-dataname="last_name" data-sortname="last_name">Last Name</th>
+                    <th data-dataname="email" data-sortname="email">Email</th>
+                    <th data-dataname="phone_number" data-sortname="dietary_requirements">Phone Number</th>
+                    <th data-dataname="account_type" data-sortname="account_type">Account Type</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="table-loading-modal">
+            <span class="material-icons">replay</span>
+        </div>
+        <script src="/admin/js/AdminData.js"></script>
+    </div>
+</main>
+
+<?- include('../../components/foot') ?>

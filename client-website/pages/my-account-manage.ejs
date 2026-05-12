@@ -1,0 +1,63 @@
+<?-include('../components/head', {page_title: 'My Account'})?>
+
+<main class="full-width">
+    <div class="inline-nav">
+        <div class="account-grid">
+            <div class="my-account-links-container">
+                <a href="/my-account/orders/1">My Orders</a>
+                <a href="/my-account/manage" class="selected">Manage my Account</a>
+            </div>
+            <div class="my-account-content-container">
+                <form class="website-form" action="/my-account/update/email" method="post">
+                    <h2>Update Email Address</h2>
+                    <? if(locals.email_in_use) { ?>
+                        <p class="form-validation-error">Email already in use</p>
+                    <? } ?>
+                    <? if(locals.email_fail) { ?>
+                    <p class="form-validation-error">The email you supplied was either not valid or didn't match</p>
+                    <? } ?>
+                    <label for="email-input">New Email: </label>
+                    <input type="email" required name="email-input" id="email-input" placeholder="dave@example.com">
+
+                    <label for="email-input-confirm">Confirm New Email:</label>
+                    <input type="email" required name="email-input-confirm" id="email-input-confirm" placeholder="dave@example.com">
+                    <input class="orange-button" type="submit" value="Update">
+                </form>
+
+                <form class="website-form" action="/my-account/update/address" method="post">
+                    <h2>Update Address</h2>
+                    <? if(locals.location_invalid) { ?>
+                        <p class="form-validation-error">The location you supplied isn't valid or isn't served by the food bank</p>
+                    <? } ?>
+                    <? if(locals.address_updated) { ?>
+                        <p class="success-result">Your address was updated successfully</p>
+                    <? } ?>
+                    <label for="input-postcode">New Postcode:</label>
+                    <input required type="text" name="input-postcode" id="input-postcode" placeholder="SY232AZ">
+                    <label for="input-address">New Address: </label>
+                    <textarea required type="text" name="input-address" id="input-address" placeholder="10 Place Road"></textarea>
+                    <input class="orange-button" type="submit" value="Update">
+                </form>
+
+                <form class="website-form" action="/my-account/update/password" method="post">
+                    <h2>Update your Password</h2>
+                    <? if(locals.password_validation_fail) {?>
+                        <p class="form-validation-error">The password you entered wasn't valid</p>
+                    <? } ?>
+                    <? if(locals.password_mismatch) { ?>
+                        <p class="form-validation-error">The passwords you entered do not match</p>
+                    <? } ?>
+                    <label for="input-password">New Password:</label>
+                    <input type="password" name="input-password" id="input-password" required />
+
+                    <label for="input-password-confirm">Confirm New Password:</label>
+                    <input type="password" name="input-password-confirm" id="input-password-confirm" required />
+
+                    <input type="submit" class="orange-button" value="Update"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<?-include('../components/foot', {page_title: 'My Account'})?>

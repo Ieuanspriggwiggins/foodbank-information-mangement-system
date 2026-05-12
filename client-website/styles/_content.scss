@@ -1,0 +1,20 @@
+main{
+  margin-bottom: 50px;
+  article{
+    margin-top: 50px;
+    p{
+      line-height: 24px;
+    }
+    p, h2{
+      font-weight: lighter;
+    }
+  }
+  ul{
+    font-weight: lighter;
+    line-height: 24px;
+    list-style-type: circle;
+    li{
+      text-transform: capitalize;
+    }
+  }
+}
